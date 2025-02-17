@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivara - Login</title>
+    <link rel="stylesheet" href="style_formulario.css">
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            var phone = document.getElementById("phone").value;
+            var password = document.getElementById("password").value;
+
+            // Recupera os dados dos usuários registrados do localStorage
+            let usuariosRegistrados = JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
+
+            // Verifica se o usuário está registrado
+            const usuarioRegistrado = usuariosRegistrados.find(user => user.phone === phone && user.password === password);
+
+            if (usuarioRegistrado) {
+                // Se o usuário estiver registrado, redireciona para a página inicial
+                window.location.href = "pagina_inicial.html";
+            } else {
+                // Se não estiver registrado, redireciona para a página de registro
+                window.location.href = "registro.html";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>VIVARA</h1>
+        <form onsubmit="validateForm(event)">
+            <div class="input-group">
+                <label for="phone">📱 Número do Celular</label>
+                <input type="tel" id="phone" name="phone" placeholder="+55">
+            </div>
+            <div class="input-group">
+                <label for="password">🔒 Senha</label>
+                <input type="password" id="password" name="password" placeholder="Senha">
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <p>Não tem conta? <a href="registro.html">Registre-se</a></p>
+    </div>
+</body>
+</html>

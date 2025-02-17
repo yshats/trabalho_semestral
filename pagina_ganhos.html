@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivara - Ganhos</title>
+    <link rel="stylesheet" href="style_ganhos.css">
+    <script>
+        // Simulação dos investimentos
+        const investimentos = [
+            { produto: "Vivara x1", preco: 40.00, rendaDiaria: 8.00, receitaTotal: 400.00, tempoCompra: "2024-11-09 02:18:54", ciclo: "0/50" }
+        ];
+
+        function carregarInvestimentos() {
+            const investimentosContainer = document.getElementById("investimentosContainer");
+            investimentos.forEach(investimento => {
+                const investimentoCard = document.createElement("div");
+                investimentoCard.className = "investimento-card";
+                
+                const img = document.createElement("img");
+                img.src = "https://lojavivara.vtexassets.com/unsafe/800x474/center/middle/https%3A%2F%2Flojavivara.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2Fffb42cd1-ed80-40e6-976b-df1c6e252dc4___6dc1823991e3cff49e061e930d6b2796.jpg"; // Imagem do produto da Vivara
+                img.alt = investimento.produto;
+                
+                const infoContainer = document.createElement("div");
+                infoContainer.className = "info-container";
+
+                const produtoTitulo = document.createElement("h2");
+                produtoTitulo.textContent = investimento.produto;
+                infoContainer.appendChild(produtoTitulo);
+
+                const preco = document.createElement("p");
+                preco.innerHTML = `<strong>Preço:</strong> R$${investimento.preco.toFixed(2)}`;
+                infoContainer.appendChild(preco);
+
+                const rendaDiaria = document.createElement("p");
+                rendaDiaria.innerHTML = `<strong>Renda diária:</strong> R$${investimento.rendaDiaria.toFixed(2)}`;
+                infoContainer.appendChild(rendaDiaria);
+
+                const receitaTotal = document.createElement("p");
+                receitaTotal.innerHTML = `<strong>Receita total:</strong> R$${investimento.receitaTotal.toFixed(2)}`;
+                infoContainer.appendChild(receitaTotal);
+
+                const tempoCompra = document.createElement("p");
+                tempoCompra.innerHTML = `<strong>Tempo de compra:</strong> ${investimento.tempoCompra}`;
+                infoContainer.appendChild(tempoCompra);
+
+                const ciclo = document.createElement("p");
+                ciclo.innerHTML = `<strong>Ciclo:</strong> ${investimento.ciclo}`;
+                infoContainer.appendChild(ciclo);
+                
+                investimentoCard.appendChild(img);
+                investimentoCard.appendChild(infoContainer);
+
+                investimentosContainer.appendChild(investimentoCard);
+            });
+        }
+
+        window.onload = carregarInvestimentos;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Meus Ganhos</h1>
+    </header>
+    <main>
+        <div id="investimentosContainer" class="investimentos-container">
+            <!-- Os investimentos serão carregados aqui -->
+        </div>
+    </main>
+    <footer>
+        <nav class="bottom-menu">
+            <div>
+                <a href="pagina_inicial.html">
+                    <img src="inicio.png" alt="Início">
+                    <p>Início</p>
+                </a>
+            </div>
+            <div>
+                <a href="pagina_ganhos.html">
+                    <img src="android_icon.png" alt="Ganhos">
+                    <p>Ganhos</p>
+                </a>
+            </div>
+            <div>
+                <a href="compartilhar.html">
+                    <img src="compartilhar.png" alt="Compartilhar">
+                    <p>Compartilhar</p>
+                </a>
+            </div>
+            <div>
+                <a href="meu.html">
+                    <img src="meu.png" alt="Meu">
+                    <p>Meu</p>
+                </a>
+            </div>
+        </nav>
+    </footer>
+</body>
+</html>

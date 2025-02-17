@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivara - Registro</title>
+    <link rel="stylesheet" href="style_registro.css"> <!-- Usando o mesmo CSS da página de login -->
+    <script>
+        function generateCode() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            let code = '';
+            for (let i = 0; i < 8; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                code += characters.charAt(randomIndex);
+            }
+            return code;
+        }
+
+        function provideCode() {
+            const code = generateCode();
+            document.getElementById("shareCode").innerText = `Compartilhe este código: ${code}`;
+        }
+
+        function validateRegistrationForm(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            var fullName = document.getElementById("fullName").value;
+            var username = document.getElementById("username").value;
+            var phone = document.getElementById("phone").value;
+            var password = document.getElementById("password").value;
+            var shareCodeInput = document.getElementById("shareCodeInput").value;
+            var providedCode = document.getElementById("shareCode").innerText.split(': ')[1];
+
+            if (fullName && username && phone && password && shareCodeInput) {
+                if (shareCodeInput === providedCode) {
+                    // Recupera os dados dos usuários registrados do localStorage
+                    let usuariosRegistrados = JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
+
+                    // Adiciona o novo usuário à lista de usuários registrados
+                    usuariosRegistrados.push({ fullName: fullName, username: username, phone: phone, password: password });
+
+                    // Salva os dados dos usuários registrados no localStorage
+                    localStorage.setItem("usuariosRegistrados", JSON.stringify(usuariosRegistrados));
+
+                    // Redireciona para a página inicial
+                    window.location.href = "pagina_inicial.html";
+                } else {
+                    alert("Código compartilhado inválido.");
+                }
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+    </script>
+</head>
+<body onload="provideCode()">
+    <div class="registration-container">
+        <h1>VIVARA</h1>
+        <form onsubmit="validateRegistrationForm(event)">
+            <div class="input-group">
+                <label for="fullName">👤 Nome Completo</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Nome Completo">
+            </div>
+            <div class="input-group">
+                <label for="username">🆔 Nome de Usuário</label>
+                <input type="text" id="username" name="username" placeholder="Nome de Usuário">
+            </div>
+            <div class="input-group">
+                <label for="phone">📱 Número do Celular</label>
+                <input type="tel" id="phone" name="phone" placeholder="+55">
+            </div>
+            <div class="input-group">
+                <label for="password">🔒 Senha</label>
+                <input type="password" id="password" name="password" placeholder="Senha">
+            </div>
+            <div class="input-group">
+                <label for="shareCodeInput">📲 Código Compartilhado</label>
+                <input type="text" id="shareCodeInput" name="shareCodeInput" placeholder="Código Compartilhado">
+            </div>
+            <div id="shareCode"></div>
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+</body>
+</html>

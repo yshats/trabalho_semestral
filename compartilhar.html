@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivara - Compartilhar</title>
+    <link rel="stylesheet" href="style_compartilhar.css">
+    <script>
+        function generateCode() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let code = '';
+            for (let i = 0; i < 8; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                code += characters.charAt(randomIndex);
+            }
+            return code;
+        }
+
+        function shareLink() {
+            const code = generateCode();
+            const shareUrl = `https://seusite.com/registro.html?codigo=${code}`;
+            document.getElementById("shareLink").value = shareUrl;
+            document.getElementById("shareContainer").style.display = 'block';
+        }
+
+        function copyLink() {
+            const copyText = document.getElementById("shareLink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Para dispositivos móveis
+            document.execCommand("copy");
+            alert("Link copiado: " + copyText.value);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Compartilhar Página</h1>
+    </header>
+    <main>
+        <button onclick="shareLink()">Compartilhar</button>
+        <div id="shareContainer" style="display:none;">
+            <input type="text" id="shareLink" readonly>
+            <button onclick="copyLink()">Copiar Link</button>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-menu">
+            <div>
+                <a href="pagina_inicial.html">
+                <img src="inicio.png" alt="Início">
+                <p>Início</p>
+            </a>
+        </div>
+            <div>
+                <a href="pagina_ganhos.html">
+                <img src="android_icon.png" alt="Ganhos">
+                <p>Ganhos</p>
+            </a>
+        </div>
+            <div>
+                <a href="compartilhar.html">
+                <img src="compartilhar.png" alt="Compartilhar">
+                <p>Compartilhar</p>
+            </a>
+        </div>
+            <div>
+                <a href="meu.html">
+                    <img src="meu.png" alt="Meu">
+                    <p>Meu</p>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

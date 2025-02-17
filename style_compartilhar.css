@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #d17b49;
+    color: white;
+    padding: 10px 0;
+}
+
+footer {
+    background-color: #fff;
+    border-top: 1px solid #d17b49;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0; /* Impede que o footer encolha */
+}
+
+.footer-menu {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 400px;
+}
+
+.footer-menu div {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-menu a {
+    color: #d17b49;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-menu a:hover {
+    text-decoration: underline;
+    color: #a1523a; /* Altera a cor ao hover */
+}
+
+.footer-menu img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+}
+
+main {
+    flex: 1; /* Permite que o main ocupe todo o espaço disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+button {
+    background-color: #d17b49;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #a1523a;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .footer-menu {
+        flex-direction: column;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 20px);
+    }
+}
+
+/* Estilo para os links */
+a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; /* Faz com que a cor do link herde a cor do texto */
+}
+
+a:hover {
+    color: #d17b49; /* Altera a cor quando o link for hoverizado */
+}
